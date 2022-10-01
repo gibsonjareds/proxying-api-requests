@@ -14,34 +14,24 @@ class NpiRegistry {
 
     private string $url;
     private string $version;
-    private array $search_params = [
-        'first_name',
-        'last_name',
-        'number',
-        'city',
-        'state',
-        'taxonomy_description'
-    ];
-    private int attempts = 0;
+    private int $attempts = 0;
 
-    public function __construct(string $registry_url, string $version): void
+    public function __construct(string $registry_url, string $version)
     {
         $this->url = $registry_url;
         $this->version = $version;
 
     }
-    private function _generateQueryObject(string $query, int $page):array
+    private function _generateQueryObject(array $query, int $page):array
     {
-        $queryObj = array();
-        foreach($this->search_params  as $param){
-            $queryObj[$param] = $query;
-        }
+        $queryObj = $query;
         $queryObj['version'] = $this->version;
-        $queryObj['use_first_name_alias'] = true;
+        $queryObj['use_first_name_alias'] = "true";
         $queryObj['limit'] = 50;
         $queryObj['skip'] = $queryObj['limit'] * $page;
+        return $queryObj;
     }
-    public function searchResults(string $query='', int $page=1)
+    public function searchResults(array $query=[], int $page=1)
     {
         $response = Http::get($this->url, $this->_generateQueryObject($query, $page));
         if($response->successful()){

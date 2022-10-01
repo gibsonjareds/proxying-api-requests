@@ -6,6 +6,7 @@
  */
 namespace App\Providers;
 
+use App\Http\Clients\NpiRegistry;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -17,7 +18,7 @@ class NpiServiceProvider extends ServiceProvider {
      */
     public function register(): void
     {
-        
+
     }
     /**
      * Bootstraps application services
@@ -26,6 +27,8 @@ class NpiServiceProvider extends ServiceProvider {
      */
     public function boot(): void
     {
-        
+        $this->app->singleton(NpiRegistry::class, function($app){
+            return new NpiRegistry(config('npi.npi_url'), config('npi.npi_version'));
+        });
     }
 }
