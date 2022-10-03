@@ -5,18 +5,17 @@
  */
 
 import './bootstrap';
-import { createApp } from 'vue';
-
+import { createApp, h } from 'vue';
+import App from "./App.vue";
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
-
-import AppComponent from './components/AppComponent.vue';
-app.component('app-component', APpComponent);
+const app = createApp({
+    render: ()=> h(App)
+});
 
 /**
  * The following block of code may be used to automatically register your

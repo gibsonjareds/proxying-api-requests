@@ -19,9 +19,9 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @vite(['resources/js/app.js', 'resources/sass/app.scss'])
+        @vite(['resources/js/app.js', 'resources/sass/app.scss'])
     </head>
     <body class="antialiased">
-      <div id="app" ></div>
+      <div id="app"></div>
     </body>
 </html>
