@@ -14,6 +14,15 @@ class NpiRegistry {
 
     private string $url;
     private string $version;
+    public static $args = [
+        'first_name',
+        'last_name',
+        'number',
+        'taxonomy_description',
+        'city',
+        'state',
+        'postal_code'
+    ];
     private int $attempts = 0;
 
     public function __construct(string $registry_url, string $version)
@@ -36,7 +45,7 @@ class NpiRegistry {
         $response = Http::get($this->url, $this->_generateQueryObject($query, $page));
         if($response->successful()){
             // just pass it on if it's successful
-            return response()->json($response->body());
+            return $response;
         }else if($response->serverError() && $this->attempts <= 5){
             // try again in a few seconds if it's a server error;
             $this->attempts++;
@@ -45,7 +54,7 @@ class NpiRegistry {
         }else{
             // just give up and send the error back to the client if it's a client error or the server is having too much trouble
             $this->attempts=0;
-            return response()->json($response->body(), $response->status());
+            return $response;
         }
     }
 }
