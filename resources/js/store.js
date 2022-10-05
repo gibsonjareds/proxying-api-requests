@@ -11,6 +11,9 @@ export const store = reactive({
         state:'',
         postal_code:''
     },
+    details:{},
+    isLoadingDetails:{},
+    isLoading: false,
     results:[],
     last_count:50,
     errorMsg:''

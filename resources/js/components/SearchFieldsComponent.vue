@@ -58,6 +58,7 @@
             search: (e) =>{
                 e.preventDefault();
                 store.errorMsg='';
+                store.isLoading=true;
                 axios.get('/api/npi-registry/', {params:store.params})
                 .then(response=>{
                     if(!response.data.Errors){
@@ -66,7 +67,7 @@
                     }else if(response.data.Errors.length > 0){
                         store.errorMsg = response.data.Errors[0].description;
                     }
-                    console.log(store);
+                    store.isLoading=false;
                 });
                 return false;
             }
