@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\Controller;
+namespace App\Http\Controllers;
 
 use App\Http\Clients\NpiRegistry;
-use Illuminate\Http\Client\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse as Response;
 
 
 class NpiRegistryController extends Controller{
@@ -19,11 +19,11 @@ class NpiRegistryController extends Controller{
         $params = array();
         $page = (int) ($request->input('page') ?? 1);
         foreach (NpiRegistry::$args as $arg) {
-            if($request->input($arg)){
+            if(!empty($request->input($arg))){
                 $params[$arg] = $request->input($arg);
             }
         }
         $response = $this->client->searchResults($params, $page);
-        return response()->json($response->body(), $response->status());
+        return response()->json(json_decode($response->body()), $response->status());
     }
 }

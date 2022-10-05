@@ -37,11 +37,12 @@ class NpiRegistry {
         $queryObj['version'] = $this->version;
         $queryObj['use_first_name_alias'] = "true";
         $queryObj['limit'] = 50;
-        $queryObj['skip'] = $queryObj['limit'] * $page;
+        $queryObj['skip'] = $queryObj['limit'] * ($page - 1);
         return $queryObj;
     }
     public function searchResults(array $query=[], int $page=1)
     {
+        $page = $page < 1 ? 1: $page;
         $response = Http::get($this->url, $this->_generateQueryObject($query, $page));
         if($response->successful()){
             // just pass it on if it's successful

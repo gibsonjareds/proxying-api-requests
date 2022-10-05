@@ -1,10 +1,9 @@
 <template>
     <div class="container">
         <header-component></header-component>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-            </div>
-        </div>
+        <error-bar-component></error-bar-component>
+        <search-fields-component></search-fields-component>
+        <result-list-component></result-list-component>
     </div>
 </template>
 
