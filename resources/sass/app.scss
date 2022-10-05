@@ -8,13 +8,18 @@
 @import 'bootstrap/scss/bootstrap';
 
 .search-fields {
-    margin: 10px 0;
     .card{
         padding:0;
     }
     .fields-form{
         padding: 10px;
     }
+}
+.row {
+    margin: 10px 0;
+}
+.row.justify-content-space-between{
+    justify-content:space-between;
 }
 .result-list{
     list-style:none;
