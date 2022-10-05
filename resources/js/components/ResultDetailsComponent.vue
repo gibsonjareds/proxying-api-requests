@@ -98,7 +98,8 @@
                 let addressStr = '';
                 if (address){
                     addressStr += address.address_1 + " " + address.address_2 + "\n";
-                    addressStr += address.city + ", " + address.state + " " + address.postal_code.substring(0,5) +"-"+ address.postal_code.substring(5) +"\n";
+                    addressStr += address.city + ", " + address.state + " "
+                    addressStr += address.postal_code ? address.postal_code.substring(0,5) +"-"+ address.postal_code.substring(5) +"\n" : "\n";
                     addressStr += address.country_name + "\n\n";
 
                     addressStr += "Phone: " + (address.phone_number ?? "-") + " | Fax: " + (address.fax_number ?? "-");
